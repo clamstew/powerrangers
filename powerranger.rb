@@ -1,7 +1,8 @@
 class Person
+  attr_accessor :name, :caffeine_level, :strength
   def initialize name
-    @name
-    @caffeine_level = 0
+    @name = name
+    @caffeine_level = 10
     @strength = 100
   end
 
@@ -20,8 +21,36 @@ class Person
   end
 end
 
-class PowerRanger
+class PowerRanger < Person
+  def initialize(name, color)
+  	super(name)
+    @strength = 200
+    @color = color
+  end
+
+  def punch person
+  	if @strength > 5
+  	  2.times person.scream 
+  	  2.times person.run(2)
+  	  person.strength -= 20
+  	else 
+  	  person.scream 
+  	  person.run(2)
+  	  person.strength -= 10
+  	end
+  	@caffeine_level -= 3
+  end
+
+  def use_megazord person
+  	person.scream 
+  	person.run(2)
+  	person.strength -= 5000
+  end
+
+  def rest hours
+  	@strength = (hours * 10) + @strength
+  end
 end
 
-class EvilNinja
+class EvilNinja < Person
 end
